@@ -7,7 +7,8 @@ const mongoose = require('mongoose');
 
 
 // router
-const userRoutes = require('./routes/user')
+const authRoutes = require('./routes/auth');
+const adminauthRoutes = require('./routes/admin/auth');
 
 //mongodbb connection
 // mongodb+srv://root:<password>@cluster0.1xung.mongodb.net/myFirstDatabase?retryWrites=true&w=majority
@@ -23,10 +24,9 @@ mongoose.connect(
     });
 
 
-
-
 app.use(bodyParser());//used as a medium to pass data to server
-app.use('/api',userRoutes);// when making a request if we manuplate the date then it is middleware 
+app.use('/api',authRoutes);// when making a request if we manuplate the date then it is middleware 
+app.use('/api',adminauthRoutes);
 
 app.listen(process.env.PORT, ()=>{
     console.log(`Listening on port ${process.env.PORT}`); 
